@@ -33,10 +33,6 @@
 		</h2>
 	</div>
 
-	<%
-	Connection conn = DBConnect.getConn();
-	out.println(conn);
-	%>
 
 
 	<div class="container">
@@ -53,7 +49,7 @@
 						<p>
 							<b>Java Programming</b>
 						</p>
-						<p>Best Java Langugue Learn</p>
+						<p>Best Java Language Learn</p>
 						<p>Category : New</p>
 						<div class="col">
 							<a href="" class="btn btn-danger "

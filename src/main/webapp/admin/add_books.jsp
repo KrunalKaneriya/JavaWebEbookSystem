@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,24 @@
 				<div class="card">
 					<div class="card-body">
 						<h4 class="text-center">Add Books</h4>
-						<form action="../AdminAddBookServlet" method="post" enctype="multipart/form-data">
+						
+						
+						
+						
+						<!-- This snippet will check the value and print it for session only -->
+						<c:if test="${not empty bookAddSuccess }">
+							<p class="text-center text-success">${bookAddSuccess }</p>
+							
+							<c:remove var="bookAddSuccess" scope="session"/>
+						</c:if>
+
+						<c:if test="${not empty bookAddFailed }">
+							<p class="text-center text-danger">${bookAddFailed }</p>
+							<c:remove var="bookAddFailed" scope="session" />
+						</c:if>
+						
+						
+						<form action="../add_books" method="post" enctype="multipart/form-data">
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Book Name</label> <input
@@ -43,7 +62,7 @@
 
 							<div class="form-group">
 								<label for="inputState">Book Categories</label> <select
-									id="inputState" name="btype" class="form-control">
+									id="inputState" name="categories" class="form-control">
 									<option selected>--Select--</option>
 									<option value="New">New Book</option>
 
@@ -52,7 +71,7 @@
 
 							<div class="form-group">
 								<label for="inputState">Book Status</label> <select
-									id="inputState" name="bstatus" class="form-control">
+									id="inputState" name="status" class="form-control">
 									<option selected>--Select--</option>
 									<option value="Active">Active</option>
 									<option value="Inactive">Inactive</option>

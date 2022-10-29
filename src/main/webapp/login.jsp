@@ -828,8 +828,8 @@ label.valid:after {
 	
 	<c:if test="${not empty loginFailed}">
 							<p class="text-center text-danger">${loginFailed}</p>
-							
-						</c:if>
+							<c:remove var="loginFailed" scope="session" />
+	</c:if>
 
 		<!-- Sing in  Form -->
 		<section class="sign-in">
