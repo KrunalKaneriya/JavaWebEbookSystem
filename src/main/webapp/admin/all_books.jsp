@@ -23,14 +23,14 @@
 	<h3 class="text-center">Hello Admin</h3>
 
 	<!-- This snippet will check the value and print it for session only -->
-	<c:if test="${not empty updateBookSuccess }">
-		<h5 class="text-center text-success">${updateBookSuccess }</h5>
+	<c:if test="${not empty successMessage }">
+		<h5 class="text-center text-success">${successMessage }</h5>
 
 		<c:remove var="updateBookSuccess" scope="session" />
 	</c:if>
 
-	<c:if test="${not empty updateBookFailed }">
-		<h5 class="text-center text-danger">${updateBookFailed }</h5>
+	<c:if test="${not empty failedMessage }">
+		<h5 class="text-center text-danger">${failedMessage }</h5>
 		<c:remove var="updateBookFailed" scope="session" />
 	</c:if>
 
@@ -69,8 +69,8 @@
 					<td><%=b.getStatus()%></td>
 					<td><%=b.getEmail()%></td>
 					<td><a href="edit_books.jsp?id=<%=b.getBook_id()%>"
-						class="btn btn-sm btn-primary">Edit</a><a href="#"
-						class="btn btn-sm btn-danger">Delete</a></td>
+						class="btn btn-sm btn-primary">Edit</a>
+						<a href="../delete?id=<%=b.getBook_id() %>" class="btn btn-sm btn-danger">Delete</a></td>
 				</tr>
 
 				<%

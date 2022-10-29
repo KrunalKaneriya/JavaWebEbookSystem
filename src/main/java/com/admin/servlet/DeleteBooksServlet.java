@@ -11,46 +11,33 @@ import javax.servlet.http.HttpSession;
 
 import com.DAO.BookDAOImpl;
 import com.DB.DBConnect;
-import com.entity.BookDetails;
 
-@WebServlet("/edit_books")
-public class EditBooksServlet extends HttpServlet{
+@WebServlet("/delete")
+public class DeleteBooksServlet extends HttpServlet {
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			
+
 			int id = Integer.parseInt(req.getParameter("id"));
-			String book_name = req.getParameter("bname");
-			String author = req.getParameter("author");
-			String price = req.getParameter("price");
-			String status = req.getParameter("status");
-			
-			BookDetails book = new BookDetails();
-			book.setBook_id(id);
-			book.setBook_name(book_name);
-			book.setAuthor(author);
-			book.setPrice(price);
-			book.setStatus(status);
-			
+
 			BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
-			boolean updateResult = dao.updateBook(book);
-			
+			boolean deleteResult = dao.deleteBook(id);
+
 			HttpSession session = req.getSession();
-			
-			if(updateResult) {
+
+			if (deleteResult) {
 				session.setAttribute("failedMessage", "Book Updated Successfully");
-				
+
 			} else {
 				session.setAttribute("failedMessage", "Error Updating Book");
 			}
-			
+
 			resp.sendRedirect("admin/all_books.jsp");
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
