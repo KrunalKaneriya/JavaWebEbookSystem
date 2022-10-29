@@ -9,4 +9,8 @@ public interface BookDAO {
 	public boolean addBooks(BookDetails bookDetails);
 	
 	public List<BookDetails> getAllBookDetails();
+	
+	public BookDetails getBookById(int id);
+	
+	public boolean updateBook(BookDetails book);
 }
