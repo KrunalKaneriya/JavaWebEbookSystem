@@ -1,3 +1,6 @@
+<%@page import="com.entity.BookDetails"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DAO.BookDAOImpl"%>
 <%@page import="com.DB.DBConnect"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -42,100 +45,53 @@
 
 		<h1 class=" text-center my-3">Recent Books</h1>
 		<div class="row">
+
+			<%
+			BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
+			List<BookDetails> recentBooks = dao.getRecentBooks();
+			for (BookDetails b : recentBooks) {
+			%>
 			<div class="col-md-3">
 				<div class="card crd-ho">
 					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
+						<img src="book/<%=b.getPhotoName()%>" width="200px" height="270px"
+							alt="alt" />
 						<p>
-							<b>Java Programming</b>
+							<b><%=b.getBook_name()%></b>
 						</p>
-						<p>Best Java Language Learn</p>
-						<p>Category : New</p>
+						<p><%=b.getAuthor()%></p>
+						<p>
+							Category :
+							<%=b.getBook_category()%></p>
 						<div class="col">
+
+							<%
+							if (b.getBook_category().equals("New")) {
+							%>
 							<a href="" class="btn btn-danger "
 								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-danger "
+								class="fa-solid fa-cart-plus"></i>Add Cart </a>
+							<%
+							}
+							%>
+							<a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a
+								href="" class="btn btn-danger"
 								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
+								class="fas fa-rupee-sign"> </i> <%=b.getPrice()%> </a>
 						</div>
 
 					</div>
 				</div>
 			</div>
+			<%
+			}
+			%>
 
 
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-danger "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-primary "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-primary"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<div class="text-center">
-			<a href="" class="btn my-3"
+			<a href="all_recent_books.jsp" class="btn my-3"
 				style="border: #303f9f; background-color: #303f9f; color: white">View
 				All</a>
 		</div>
@@ -147,100 +103,39 @@
 	<div class="container">
 		<h1 class=" text-center my-3">Old Books</h1>
 		<div class="row">
+
+			<%
+			List<BookDetails> oldBooks = dao.getOldBooks();
+			for (BookDetails b : oldBooks) {
+			%>
 			<div class="col-md-3">
 				<div class="card crd-ho">
 					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
+						<img src="book/<%=b.getPhotoName()%>" width="200px" height="270px"
+							alt="alt" />
 						<p>
-							<b>Java Programming</b>
+							<b><%=b.getBook_name()%></b>
 						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
+						<p><%=b.getAuthor()%></p>
+						<p>
+							Category :
+							<%=b.getBook_category()%></p>
 						<div class="col">
-							<a href="" class="btn btn-danger "
+							<a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a
+								href="" class="btn btn-danger"
 								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
+								class="fas fa-rupee-sign"> </i> <%=b.getPrice()%> </a>
 						</div>
 
 					</div>
 				</div>
 			</div>
-
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-danger "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-danger "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-danger"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-md-3">
-				<div class="card crd-ho">
-					<div class="card-body text-center">
-						<img src="img/OIP (1).jfif" width="200px" height="270px" alt="alt" />
-						<p>
-							<b>Java Programming</b>
-						</p>
-						<p>Best Java Langugue Learn</p>
-						<p>Category : New</p>
-						<div class="col">
-							<a href="" class="btn btn-primary "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-								class=" btn btn-success">View</a> <a href=""
-								class="btn btn-primary"
-								style="background-color: #303f9f; border: #303f9f">$20</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
+			<%
+			}
+			%>
 
 			<div class="text-center">
-				<a href="" class="btn my-3"
+				<a href="all_old_books.jsp" class="btn my-3"
 					style="border: #303f9f; background-color: #303f9f; color: white">View
 					All</a>
 			</div>
@@ -253,105 +148,46 @@
 		<div class="container">
 			<h1 class=" text-center my-3">New Books</h1>
 			<div class="row">
+
+
+				<%
+				List<BookDetails> newBooks = dao.getNewBooks();
+				for (BookDetails b : newBooks) {
+				%>
 				<div class="col-md-3">
 					<div class="card crd-ho">
 						<div class="card-body text-center">
-							<img src="img/OIP (1).jfif" width="200px" height="270px"
-								alt="alt" />
+							<img src="book/<%=b.getPhotoName()%>" width="200px"
+								height="270px" alt="alt" />
 							<p>
-								<b>Java Programming</b>
+								<b><%=b.getBook_name()%></b>
 							</p>
-							<p>Best Java Langugue Learn</p>
-							<p>Category : New</p>
+							<p><%=b.getAuthor()%></p>
+							<p>
+								Category :
+								<%=b.getBook_category()%></p>
 							<div class="col">
 								<a href="" class="btn btn-danger "
+									style="background-color: #303f9f; border: #303f9f"> <i
+									class="fa-solid fa-cart-plus"></i>Add Cart
+								</a> <a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a
+									href="" class="btn btn-danger"
 									style="background-color: #303f9f; border: #303f9f"><i
-									class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-									class=" btn btn-success">View</a> <a href=""
-									class="btn btn-danger"
-									style="background-color: #303f9f; border: #303f9f">$20</a>
+									class="fas fa-rupee-sign"> </i> <%=b.getPrice()%> </a>
 							</div>
 
 						</div>
 					</div>
 				</div>
+				<%
+				}
+				%>
 
 
-				<div class="col-md-3">
-					<div class="card crd-ho">
-						<div class="card-body text-center">
-							<img src="img/OIP (1).jfif" width="200px" height="270px"
-								alt="alt" />
-							<p>
-								<b>Java Programming</b>
-							</p>
-							<p>Best Java Langugue Learn</p>
-							<p>Category : New</p>
-							<div class="col">
-								<a href="" class="btn btn-danger "
-									style="background-color: #303f9f; border: #303f9f"><i
-									class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-									class=" btn btn-success">View</a> <a href=""
-									class="btn btn-danger"
-									style="background-color: #303f9f; border: #303f9f">$20</a>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-
-				<div class="col-md-3">
-					<div class="card crd-ho">
-						<div class="card-body text-center">
-							<img src="img/OIP (1).jfif" width="200px" height="270px"
-								alt="alt" />
-							<p>
-								<b>Java Programming</b>
-							</p>
-							<p>Best Java Langugue Learn</p>
-							<p>Category : New</p>
-							<div class="col">
-								<a href="" class="btn btn-danger "
-									style="background-color: #303f9f; border: #303f9f"><i
-									class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-									class=" btn btn-success">View</a> <a href=""
-									class="btn btn-danger"
-									style="background-color: #303f9f; border: #303f9f">$20</a>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-
-
-				<div class="col-md-3">
-					<div class="card crd-ho">
-						<div class="card-body text-center">
-							<img src="img/OIP (1).jfif" width="200px" height="270px"
-								alt="alt" />
-							<p>
-								<b>Java Programming</b>
-							</p>
-							<p>Best Java Langugue Learn</p>
-							<p>Category : New</p>
-							<div class="col">
-								<a href="" class="btn btn-primary "
-									style="background-color: #303f9f; border: #303f9f"><i
-									class="fa-solid fa-cart-plus"></i>Add Cart </a> <a href=""
-									class=" btn btn-success">View</a> <a href=""
-									class="btn btn-primary"
-									style="background-color: #303f9f; border: #303f9f">$20</a>
-							</div>
-
-						</div>
-					</div>
-				</div>
 
 			</div>
 			<div class="text-center">
-				<a href="" class="btn my-3"
+				<a href="all_new_books.jsp" class="btn my-3"
 					style="border: #303f9f; background-color: #303f9f; color: white">View
 					All</a>
 			</div>
@@ -361,8 +197,6 @@
 
 
 	</div>
-
-
 
 
 	<div style="margin-top: 187px;">

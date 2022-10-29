@@ -15,4 +15,16 @@ public interface BookDAO {
 	public boolean updateBook(BookDetails book);
 	
 	public boolean deleteBook(int id);
+	
+	public List<BookDetails> getNewBooks();
+	
+	public List<BookDetails> getRecentBooks();
+	
+	public List<BookDetails> getOldBooks();
+	
+	public List<BookDetails> getAllRecentBooks();
+	
+	public List<BookDetails> getAllNewBooks();
+	
+	public List<BookDetails> getAllOldBooks();
 }

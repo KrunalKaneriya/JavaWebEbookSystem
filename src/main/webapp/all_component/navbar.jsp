@@ -30,14 +30,14 @@
             <a class=" nav-link active mx-1" aria-current="page" href="index.jsp"><i class="fa-solid fa-house-chimney"></i> Home</a>
            </li>
          <li class="nav-item ">
-          <a class="nav-link active" href="#"><i class="fa-sharp fa-solid fa-book-open"></i> Recent Book </a>
+          <a class="nav-link active" href="all_recent_books.jsp"><i class="fa-sharp fa-solid fa-book-open"></i> Recent Book </a>
          </li><!-- comment -->
         <li class="nav-item ">
-          <a class="nav-link active" href="#"><i class="fa-sharp fa-solid fa-book-open"></i> New Book </a>
+          <a class="nav-link active" href="all_new_books.jsp"><i class="fa-sharp fa-solid fa-book-open"></i> New Book </a>
         </li>
         
         <li class="nav-item active">
-            <a class="nav-link active" href="#"><i class="fa-sharp fa-solid fa-book-open"></i> Old Book </a>
+            <a class="nav-link active" href="all_old_books.jsp"><i class="fa-sharp fa-solid fa-book-open"></i> Old Book </a>
         </li>
       </ul>
    <div class="col-md-3">
