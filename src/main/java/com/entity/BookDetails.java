@@ -10,7 +10,7 @@ public class BookDetails {
 	private String status;
 	private String photoName;
 	private String email;
-	
+
 	public BookDetails(String book_name, String author, String price, String book_category, String status,
 			String photoName, String email) {
 		super();
@@ -24,15 +24,19 @@ public class BookDetails {
 	}
 	
 	
-	
+
+	public BookDetails() {
+		super();
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "BookDetails [book_id=" + book_id + ", book_name=" + book_name + ", author=" + author + ", price="
 				+ price + ", book_category=" + book_category + ", status=" + status + ", photoName=" + photoName
 				+ ", email=" + email + "]";
 	}
-
-
 
 	public int getBook_id() {
 		return book_id;
@@ -98,5 +102,4 @@ public class BookDetails {
 		this.email = email;
 	}
 
-	
 }

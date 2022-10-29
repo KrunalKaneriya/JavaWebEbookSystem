@@ -21,8 +21,8 @@ import com.DB.DBConnect;
 import com.entity.BookDetails;
 
 @WebServlet("/add_books")
-@MultipartConfig //This annotation is used to enable acception of multipart/form data
-public class BooksAdd extends HttpServlet{
+@MultipartConfig // This annotation is used to enable acception of multipart/form data
+public class BooksAdd extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,42 +33,43 @@ public class BooksAdd extends HttpServlet{
 			String price = req.getParameter("price");
 			String categories = req.getParameter("categories");
 			String status = req.getParameter("status");
-			
-			//To get the filename of the image we need to get the Part from the request which is responsible to give
-			//filename submitted by client
+
+			// To get the filename of the image we need to get the Part from the request
+			// which is responsible to give
+			// filename submitted by client
 			Part part = req.getPart("bimg");
-			
-			//Part interface has getSubmittedFileName method which will give us the filename submitted by client
+
+			// Part interface has getSubmittedFileName method which will give us the
+			// filename submitted by client
 			String fileName = part.getSubmittedFileName();
-			
-			BookDetails details = new BookDetails(book_name,author,price,categories,status,fileName,"admin");
-			
+
+			BookDetails details = new BookDetails(book_name, author, price, categories, status, fileName, "admin");
+
 			BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
 
 			boolean f = dao.addBooks(details);
-			
-			
-			if(f) {
-				//It gets the absolute path from which the Project is executed. In simple terms it refers to the project path
+
+			if (f) {
+				// It gets the absolute path from which the Project is executed. In simple terms
+				// it refers to the project path
 				String path = getServletContext().getRealPath("") + "book";
-				
+
 				File file = new File(path);
-				
-				//Write method is used to write the file to the specified path
+
+				// Write method is used to write the file to the specified path
 				part.write(path + File.separator + fileName);
-				
+
 				session.setAttribute("bookAddSuccess", "Book Added Successfully");
 				resp.sendRedirect("admin/add_books.jsp");
-				
-				
+
 			} else {
 				session.setAttribute("bookAddFailed", "Error Adding New Book");
 				resp.sendRedirect("admin/add_books.jsp");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
