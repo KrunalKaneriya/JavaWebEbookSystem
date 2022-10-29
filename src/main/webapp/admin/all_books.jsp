@@ -20,18 +20,25 @@
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
+	
+	<!-- Redirect if User is not Logged in -->
+	<c:if test="${empty userObj}">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+	
+	
 	<h3 class="text-center">Hello Admin</h3>
 
 	<!-- This snippet will check the value and print it for session only -->
 	<c:if test="${not empty successMessage }">
 		<h5 class="text-center text-success">${successMessage }</h5>
 
-		<c:remove var="updateBookSuccess" scope="session" />
+		<c:remove var="successMessage" scope="session" />
 	</c:if>
 
 	<c:if test="${not empty failedMessage }">
 		<h5 class="text-center text-danger">${failedMessage }</h5>
-		<c:remove var="updateBookFailed" scope="session" />
+		<c:remove var="failedMessage" scope="session" />
 	</c:if>
 
 	<div class="container">
@@ -69,8 +76,8 @@
 					<td><%=b.getStatus()%></td>
 					<td><%=b.getEmail()%></td>
 					<td><a href="edit_books.jsp?id=<%=b.getBook_id()%>"
-						class="btn btn-sm btn-primary">Edit</a>
-						<a href="../delete?id=<%=b.getBook_id() %>" class="btn btn-sm btn-danger">Delete</a></td>
+						class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+						<a href="../delete?id=<%=b.getBook_id() %>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a></td>
 				</tr>
 
 				<%

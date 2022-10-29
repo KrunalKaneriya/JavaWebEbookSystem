@@ -16,30 +16,38 @@
 </head>
 <body style="background-color: #f0f2f2;">
 	<%@include file="navbar.jsp"%>
+
+	<!-- Redirect if User is not Logged in -->
+	<c:if test="${empty userObj}">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 offset-md-4">
 				<div class="card">
 					<div class="card-body">
 						<h4 class="text-center">Add Books</h4>
-						
-						
-						
-						
+
+
+
+
 						<!-- This snippet will check the value and print it for session only -->
 						<c:if test="${not empty bookAddSuccess }">
 							<p class="text-center text-success">${bookAddSuccess }</p>
-							
-							<c:remove var="bookAddSuccess" scope="session"/>
+
+							<c:remove var="bookAddSuccess" scope="session" />
 						</c:if>
 
 						<c:if test="${not empty bookAddFailed }">
 							<p class="text-center text-danger">${bookAddFailed }</p>
 							<c:remove var="bookAddFailed" scope="session" />
 						</c:if>
-						
-						
-						<form action="../add_books" method="post" enctype="multipart/form-data">
+
+
+						<form action="../add_books" method="post"
+							enctype="multipart/form-data">
 
 							<div class="form-group">
 								<label for="exampleInputEmail1">Book Name</label> <input

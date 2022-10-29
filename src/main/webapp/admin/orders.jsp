@@ -14,6 +14,13 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
+        
+        <!-- Redirect if User is not Logged in -->
+	<c:if test="${empty userObj}">
+		<c:redirect url="../login.jsp" />
+	</c:if>
+	
+	
         <h3 class="text-center">Hello Admin</h3>
 
         <div class="container">
