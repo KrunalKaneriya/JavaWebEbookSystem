@@ -1,3 +1,4 @@
+<%@page import="com.entity.User"%>
 <%@page import="com.entity.BookDetails"%>
 <%@page import="java.util.List"%>
 <%@page import="com.DAO.BookDAOImpl"%>
@@ -28,6 +29,10 @@
 </style>
 </head>
 <body style="background: #f7f7f7">
+
+	<%
+		User user = (User)session.getAttribute("userObj");
+	%>
 
 	<%@include file="all_component/navbar.jsp"%>
 	<div class="container-fluid back-img ">
@@ -68,12 +73,18 @@
 							<%
 							if (b.getBook_category().equals("New")) {
 							%>
-							<a href="" class="btn btn-danger "
-								style="background-color: #303f9f; border: #303f9f"><i
-								class="fa-solid fa-cart-plus"></i>Add Cart </a>
-							<%
-							}
-							%>
+							
+							<% if(user == null) { %>
+								<a href="login.jsp" class="btn btn-danger "
+									style="background-color: #303f9f; border: #303f9f"><i
+									class="fa-solid fa-cart-plus"></i>Add Cart </a>
+								<% } else { %>
+								<a href="cart?bid=<%=b.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-danger "
+									style="background-color: #303f9f; border: #303f9f"><i
+									class="fa-solid fa-cart-plus"></i>Add Cart </a>
+								<% } %>
+							
+							<% } %>
 							<a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a
 								href="" class="btn btn-danger"
 								style="background-color: #303f9f; border: #303f9f"><i
@@ -167,13 +178,27 @@
 								Category :
 								<%=b.getBook_category()%></p>
 							<div class="col">
-								<a href="" class="btn btn-danger "
-									style="background-color: #303f9f; border: #303f9f"> <i
-									class="fa-solid fa-cart-plus"></i>Add Cart
-								</a> <a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a
-									href="" class="btn btn-danger"
-									style="background-color: #303f9f; border: #303f9f"><i
-									class="fas fa-rupee-sign"> </i> <%=b.getPrice()%> </a>
+							
+							<% if(user == null) { %>
+							<a href="login.jsp" class="btn btn-danger "
+									style="background-color: #303f9f; border: #303f9f"> 
+									<i class="fa-solid fa-cart-plus"></i>
+									Add Cart
+								</a> 
+							
+							<%} else { %>
+							<a href="cart?bid=<%=b.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-danger "
+									style="background-color: #303f9f; border: #303f9f"> 
+									<i class="fa-solid fa-cart-plus"></i>
+									Add Cart
+								</a> 
+							<% }  %>
+			
+								<a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> 
+								<a href="" class="btn btn-danger" style="background-color: #303f9f; border: #303f9f">
+									<i class="fas fa-rupee-sign"> </i> 
+									<%=b.getPrice()%> 
+								</a>
 							</div>
 
 						</div>
