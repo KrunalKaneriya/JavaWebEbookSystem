@@ -45,7 +45,7 @@ public class CartServlet extends HttpServlet{
 				session.setAttribute("addCart","Book Added Successfully");
 				resp.sendRedirect("all_new_books.jsp");
 			} else {
-				session.setAttribute("failedCart","Something Wrong Happened!!");
+				session.setAttribute("failedCart","Something Wrong or Book Already Added To Cart");
 				resp.sendRedirect("all_new_books.jsp");
 			}
 			

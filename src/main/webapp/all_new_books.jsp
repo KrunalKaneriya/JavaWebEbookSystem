@@ -119,6 +119,28 @@ to {
 		</script>
 		<c:remove var="addCart" scope="session"/>
 	</c:if>
+	
+	<c:if test="${ not empty failedCart }">
+		<div id="snackbar">${failedCart}</div>
+		
+
+		<script type="text/javascript">
+			myFunction();
+			function myFunction() {
+				// Get the snackbar DIV
+				var x = document.getElementById("snackbar");
+
+				// Add the "show" class to DIV
+				x.className = "show";
+
+				// After 3 seconds, remove the show class from DIV
+				setTimeout(function() {
+					x.className = x.className.replace("show", "");
+				}, 3000);
+			}
+		</script>
+		<c:remove var="failedCart" scope="session"/>
+	</c:if>
 
 
 	<%@include file="all_component/navbar.jsp"%>

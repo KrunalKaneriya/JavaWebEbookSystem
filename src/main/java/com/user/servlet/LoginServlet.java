@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (user != null) {
 					session.setAttribute("userObj", user);
-					resp.sendRedirect("home.jsp");
+					resp.sendRedirect("index.jsp");
 
 				} else {
 					session.setAttribute("loginFailed", "Error Logging In");

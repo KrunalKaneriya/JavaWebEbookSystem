@@ -1,20 +1,43 @@
+<%@page import="com.entity.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false"%>
+
+
 <div class="container-fluid p-3">
     <div class="row">
         <div class="col-md-6">
             <h3 style="color:#303f9f"><i class="fa-sharp fa-solid fa-book"></i> Ebook</h3>
     </div>
-        <div class="col-md-4">   
+        <div class="col-md-3">   
              <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
        <a href="" class="btn btn-primary"> Search </a>
       </form>
 </div>
-        <div class="col-md-2">
-            <a href="login.jsp" class="btn btn-outline-success"><i class="fa-solid fa-right-to-bracket"></i> Login </a>
-            <a href="register.jsp" class="btn btn-outline-primary"><i class="fa-solid fa-user-plus"></i> SignUp </a>
-        </div>
+
+		<c:if test="${not empty userObj}">
+		
+		
+		
+		 <div class="col-md-3">
+		 		<a href="checkout.jsp"><i class="fas fa-cart-plus"></i></a>	
+	            <a href="" class="btn btn-outline-success"><i class="fa-solid fa-user-plus"></i> ${userObj.name} </a>
+	            <a href="logout" class="btn btn-outline-primary"><i class="fa-solid fa-right-to-bracket"></i> Logout </a>
+	     </div>
+		
+		</c:if>
+		
+		<c:if test="${empty userObj}">
+		<div class="col-md-2">
+	            <a href="login.jsp" class="btn btn-outline-success"><i class="fa-solid fa-right-to-bracket"></i> Login </a>
+	            <a href="register.jsp" class="btn btn-outline-primary"><i class="fa-solid fa-user-plus"></i> SignUp </a>
+	    </div>
+		</c:if>
+		
+		
+       
 </div>
-</div><!-- comment -->
+</div>
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-custom" style="background: #303f9f">
