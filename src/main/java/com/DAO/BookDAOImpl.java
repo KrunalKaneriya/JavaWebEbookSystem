@@ -146,6 +146,30 @@ public class BookDAOImpl implements BookDAO {
 
 		return f;
 	}
+	
+	
+
+	public boolean OldBookDelete(int id,String email, String category) {
+		boolean f = false;
+
+		try {
+			String sql = "delete from book_details where email=? and book_category=? and book_id=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, email);
+			pst.setString(2, category);
+			pst.setInt(3, id);
+			int result = pst.executeUpdate();
+
+			if (result == 1) {
+				f = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return f;
+	}
 
 	public List<BookDetails> getNewBooks() {
 
@@ -342,5 +366,39 @@ public class BookDAOImpl implements BookDAO {
 		return list;
 
 	}
+
+	public List<BookDetails> getUserOldBooks(String email, String category) {
+		List<BookDetails> list = new ArrayList<BookDetails>();
+		BookDetails book = null;
+
+		try {
+
+			String sql = "select * from book_details where book_category=? and email=?";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, category);
+			pst.setString(2, email);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				book = new BookDetails();
+				book.setBook_id(rs.getInt(1));
+				book.setBook_name(rs.getString(2));
+				book.setAuthor(rs.getString(3));
+				book.setPrice(rs.getString(4));
+				book.setBook_category(rs.getString(5));
+				book.setStatus(rs.getString(6));
+				book.setPhotoName(rs.getString(7));
+				book.setEmail(rs.getString(8));
+				list.add(book);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	
 
 }

@@ -1,5 +1,5 @@
 <%@page import="com.entity.User"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page isELIgnored="false"%>
 
 
@@ -64,7 +64,7 @@
         </li>
       </ul>
    <div class="col-md-3">
-            <a href="" class="btn btn-light"><i class="fa-solid fa-gears"></i> Setting </a>
+            <a href="setting.jsp" class="btn btn-light"><i class="fa-solid fa-gears"></i> Setting </a>
             <a href="" class="btn btn-light"><i class="fa-solid fa-address-book"></i> Contact Us </a>
         </div>
     </div>

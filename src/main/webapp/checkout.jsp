@@ -69,7 +69,7 @@
 									<th scope="row"><%=c.getBook_name() %></th>
 									<td><%=c.getAuthor() %></td>
 									<td><%=c.getPrice() %></td>
-									<td><a href="remove_book?bid=<%=c.getBook_id() %>&&uid=<%=c.getUser_id() %>" class="btn btn-small btn-danger">Remove</a></td>
+									<td><a href="" class="btn btn-small btn-danger">Remove</a></td>
 								</tr>
 								
 								<% } %>
