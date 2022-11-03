@@ -69,7 +69,7 @@
 									<th scope="row"><%=c.getBook_name() %></th>
 									<td><%=c.getAuthor() %></td>
 									<td><%=c.getPrice() %></td>
-									<td><a href="" class="btn btn-small btn-danger">Remove</a></td>
+									<td><a href="remove_book?bid=<%=c.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-small btn-danger">Remove</a></td>
 								</tr>
 								
 								<% } %>
@@ -98,44 +98,44 @@
 							<div class="row">
 								<div style="opacity: 0.7;" class="form-group col-md-6">
 									<label for="inputEmail4">Name</label> <input type="text"
-										class="form-control" id="inputEmail4" readonly="readonly" value="<%= user.getName()%>" name="name">
+										class="form-control" id="inputEmail4" readonly="readonly" value="<%= user.getName()%>" name="name" required>
 								</div>
 								<div style="opacity: 0.7;" class="form-group col-md-6">
 									<label for="inputPassword4">Email</label> <input type="email"
-										class="form-control" id="inputPassword4" value="<%= user.getEmail() %>" readonly="readonly" name="email">
+										class="form-control" id="inputPassword4" value="<%= user.getEmail() %>" readonly="readonly" name="email" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Phone Number</label> <input
-										type="number" class="form-control" id="inputEmail4" value="<%= user.getPhno()%>" name="phno">
+										type="number" class="form-control" id="inputEmail4" value="<%= user.getPhno()%>" name="phno" required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Address</label> <input type="text"
-										class="form-control" id="inputPassword4" value="" name="address">
+										class="form-control" id="inputPassword4" value="" name="address" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Landmark</label> <input type="text"
-										class="form-control" id="inputEmail4" value="" name="landmark">
+										class="form-control" id="inputEmail4" value="" name="landmark" required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">City</label> <input type="text"
-										class="form-control" id="inputPassword4" value="" name="city">
+										class="form-control" id="inputPassword4" value="" name="city" required>
 								</div>
 							</div>
 
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">State</label> <input type="text"
-										class="form-control" id="inputEmail4" value="" name="state">
+										class="form-control" id="inputEmail4" value="" name="state" required>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">Pin Code</label> <input type="text"
-										class="form-control" id="inputPassword4" value="" name="pincode">
+										class="form-control" id="inputPassword4" value="" name="pincode" required>
 								</div>
 							</div>
 

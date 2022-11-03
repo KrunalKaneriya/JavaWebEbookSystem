@@ -2,6 +2,7 @@
 <%@page import="com.entity.BookDetails"%>
 <%@page import="com.DB.DBConnect"%>
 <%@page import="com.DAO.BookDAOImpl"%>
+<%@page import="com.entity.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,10 +22,11 @@
 	<div class="container-fluid">
 		<div class="row p-3">
 			<%
-			User user = (User) session.getAttribute("userObj");
+			User user = (User)session.getAttribute("userObj");
+			String ch = request.getParameter("ch");
 			BookDAOImpl dao = new BookDAOImpl(DBConnect.getConn());
-			List<BookDetails> recentBooks = dao.getAllRecentBooks();
-			for (BookDetails b : recentBooks) {
+			List<BookDetails> books = dao.searchBooks(ch);
+			for (BookDetails b : books) {
 			%>
 			<div class="col-md-3">
 				<div class="card crd-ho mt-2">
@@ -44,24 +46,22 @@
 							if (b.getBook_category().equals("New")) {
 							%>
 								<% if(user == null) { %>
-							<a href="login.jsp" class="btn btn-danger "
+								<a href="login.jsp" class="btn btn-danger "
 									style="background-color: #303f9f; border: #303f9f"> 
 									<i class="fa-solid fa-cart-plus"></i>
 									Add Cart
 								</a> 
 							
 							<%} else { %>
-							<a href="cart?bid=<%=b.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-danger "
+								<a href="cart?bid=<%=b.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-danger "
 									style="background-color: #303f9f; border: #303f9f"> 
 									<i class="fa-solid fa-cart-plus"></i>
 									Add Cart
 								</a> 
 							<% }  %>
-								
-								
-								
-								
-							<% } %>
+							<%
+							}
+							%>
 							<a href="view_book.jsp?bid=<%=b.getBook_id() %>" class=" btn btn-success">View</a> <a href=""
 								class="btn btn-danger"
 								style="background-color: #303f9f; border: #303f9f"><i

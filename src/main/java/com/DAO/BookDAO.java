@@ -32,5 +32,6 @@ public interface BookDAO {
 	
 	public List<BookDetails> getUserOldBooks(String email,String category);
 	
+	public List<BookDetails> searchBooks(String ch);	
 	
 }

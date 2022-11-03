@@ -47,43 +47,49 @@ public class OrderServlet extends HttpServlet{
 			String fullAddress = address + "," + landmark + "," + city + "," + state + "," + pincode;
 			CartDAOImpl dao = new CartDAOImpl(DBConnect.getConn());
 			List<Cart> blist = dao.getBooksByUser(id);
-			OrderDAOImpl orderDAOImpl = new OrderDAOImpl(DBConnect.getConn());
-			int i = orderDAOImpl.getOrderNo();
 			
-			
-			Book_Order order = null;
-			ArrayList<Book_Order>orderList = new ArrayList<Book_Order>();
-			
-			
-			for(Cart c:blist) {
-				order = new Book_Order();
-				order.setOrder_id("BOOK-ORD-"+i);
-				order.setUserName(name);
-				order.setEmail(email);
-				order.setPhno(phno);
-				order.setFullAddress(fullAddress);
-				order.setBookName(c.getBook_name());
-				order.setAuthorName(c.getAuthor());
-				order.setPrice(c.getPrice() + "");
-				order.setPayment_type(paymentType);
-				orderList.add(order);
-				i++;
-			}
-			
-			if(paymentType.equals("noselect")) {
-				session.setAttribute("failedMessage", "Please Check Payment Method");
+			if(blist.isEmpty()) {
+				session.setAttribute("failedMessage", "Add Item Before Checking Out");
 				resp.sendRedirect("checkout.jsp");
 			} else {
-				boolean result = orderDAOImpl.saveOrder(orderList);
-				if(result) {
-					resp.sendRedirect("order_success.jsp");
-				} else {
-					session.setAttribute("failedMessage", "Your Order Failed");
-					resp.sendRedirect("checkout.jsp");
+				OrderDAOImpl orderDAOImpl = new OrderDAOImpl(DBConnect.getConn());
+				int i = orderDAOImpl.getOrderNo();
+				
+				
+				Book_Order order = null;
+				ArrayList<Book_Order>orderList = new ArrayList<Book_Order>();	
+				
+				
+				for(Cart c:blist) {
+					order = new Book_Order();
+					order.setOrder_id("BOOK-ORD-"+i);
+					order.setUserName(name);
+					order.setEmail(email);
+					order.setPhno(phno);
+					order.setFullAddress(fullAddress);
+					order.setBookName(c.getBook_name());
+					order.setAuthorName(c.getAuthor());
+					order.setPrice(c.getPrice() + "");
+					order.setPayment_type(paymentType);
+					orderList.add(order);
+					i++;
 				}
+				
+				if(paymentType.equals("noselect")) {
+					session.setAttribute("failedMessage", "Please Check Payment Method");
+					resp.sendRedirect("checkout.jsp");
+				} else {
+					boolean result = orderDAOImpl.saveOrder(orderList);
+					if(result) {
+						resp.sendRedirect("order_success.jsp");
+					} else {
+						session.setAttribute("failedMessage", "Your Order Failed");
+						resp.sendRedirect("checkout.jsp");
+					}
+				}
+				
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

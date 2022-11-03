@@ -9,9 +9,9 @@
             <h3 style="color:#303f9f"><i class="fa-sharp fa-solid fa-book"></i> Ebook</h3>
     </div>
         <div class="col-md-3">   
-             <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-       <a href="" class="btn btn-primary"> Search </a>
+        <form class="d-flex" role="search" action="search.jsp" method="post">
+	        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="ch">
+	       	<button class="btn btn-primary" type="submit"> Search </button>
       </form>
 </div>
 
@@ -65,7 +65,7 @@
       </ul>
    <div class="col-md-3">
             <a href="setting.jsp" class="btn btn-light"><i class="fa-solid fa-gears"></i> Setting </a>
-            <a href="" class="btn btn-light"><i class="fa-solid fa-address-book"></i> Contact Us </a>
+            <a href="helpline.jsp" class="btn btn-light"><i class="fa-solid fa-address-book"></i> Contact Us </a>
         </div>
     </div>
   </div>

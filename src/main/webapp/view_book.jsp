@@ -15,6 +15,7 @@
 	<%@include file="all_component/navbar.jsp"%>
 	
 	<%
+		User user = (User)session.getAttribute("userObj");
 		int bid = Integer.parseInt(request.getParameter("bid"));
 		BookDAOImpl daoImpl = new BookDAOImpl(DBConnect.getConn()); 
 		BookDetails book = daoImpl.getBookById(bid);
@@ -70,7 +71,7 @@
 					
 				<% } else { %>
 				
-				<a href="" class="btn btn-primary">
+				<a href="cart?bid=<%=book.getBook_id() %>&&uid=<%=user.getId() %>" class="btn btn-primary">
 						<i class="fas fa-cart-plus"></i>
 						Add To Cart
 					</a>
